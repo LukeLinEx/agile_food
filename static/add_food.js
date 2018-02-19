@@ -35,7 +35,7 @@ function loadYelp(ele) {
             tag.style.display = "block";
             }
         }
-    xhttp.open("GET", "add/"+tmp, true);
+    xhttp.open("GET", tmp, true);
     xhttp.send();
     }
 }
@@ -53,7 +53,7 @@ function godb(tag){
     var tmp = "load?restaurant=" + restaurant + "&img_src=" + img_src + "&price=" + price;
 
     var xhttp = new XMLHttpRequest();
-    xhttp.open("POST", "add/"+tmp, true);
+    xhttp.open("POST", tmp, true);
     xhttp.send()
 }
 
