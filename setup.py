@@ -1,8 +1,8 @@
 from setuptools import setup
 
 setup(
-    name='online',
-    packages=['online'],
+    name='agile_food',
+    packages=['agile_food'],
     include_package_data=True,
     install_requires=[
         'bs4',
@@ -11,3 +11,4 @@ setup(
         'pymongo'
     ],
 )
+
