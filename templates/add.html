@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Agile Food!</title>
+  </head>
+  <body>
+    <input type="search" id="searchInput" class="search"
+           onkeydown="loadYelp(this)" size="100px">
+
+    <div id="editor">
+      <div id="pic"></div>
+      <div id="form" style="display: none">
+        <form>
+          Restaurant:<br>
+          <input type="text" name="restaurant" size="50px"><br>
+          Address:<br>
+          <input type="text" name="address" size="50px"><br>
+          Name:<br>
+          <input type="text" name="name" size="50px"><br>
+          Price:<br>
+          <input type="text" name="price" size="50px">
+          <br><br>
+          <input type="submit" value="Submit" onclick="godb(this)">
+        </form>
+      </div>
+    </div>
+
+    <script src="{{url_for('static', filename='add_food.js')}}"></script>
+  </body>
+</html>

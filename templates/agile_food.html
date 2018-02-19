@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <link rel="stylesheet" type=text/css href="{{ url_for('static', filename='style.css') }}">
+    <meta name="viewport" content="initial-scale=1.0, user-scalable=no">
+    <meta charset="utf-8">
+    <title>搜索地圖</title>
+  </head>
+
+  <body>
+    <script>
+      window.appConfig = {
+        debug: {% if env == 'development' %}true{% else %}false{% endif %},
+        docs: {{docs|safe}}
+      }
+    </script>
+    <div ng-app="sortableApp" ng-controller="sortableController" class="container">
+
+      <div class="options-box">
+        <h2 id="h">Agile Food</h2>
+        <div id="agile-lower-half">
+          <div ui-sortable="sortableOptions" class="apps-container screen" ng-model="list2">
+          {%raw%}
+            <div class="app i1" id={{app.title}} ng-repeat="app in list2">
+              <font size=3>{{app.title}}</font>
+              <img class="dish-pic" src="{{app.link}}" height="120px" width="120px">
+              <button onclick="displayImg(this)" style="height:20px;width:50px">Details</button>
+            </div>
+          {%endraw%}
+          </div>
+          <div style="clear: both;"></div>
+        </div>
+      </div>
+
+
+      <div id="map">
+        <div id="view-1">
+          <div ui-sortable="sortableOptions" class="apps-container screen" ng-model="list1">
+            <div class="app i1" ng-repeat="app in list1">
+              {%raw%}
+              <font size=3>{{app.title}}</font><br>
+              <img class="dish-pic" src="{{app.link}}" height="120px" width="120px">
+              <button onclick="displayImg(this)" style="height:20px;width:40px;vertical-align:bottom;">Edit</button>
+              {%endraw%}
+            </div>
+          </div>
+        </div>
+        <div id="view-2" style="display: none">
+          <p>I love Python</p>
+          <button onclick="displayImg(this)" style="float: left">Out</button>
+        </div>
+      </div>
+
+
+      <div class="clear"></div>
+
+      <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+      <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
+      <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.4/angular.min.js"></script>
+      <script src="https://rawgithub.com/angular-ui/ui-sortable/master/src/sortable.js"></script>
+
+    </div>
+    <script type="text/javascript" src="{{url_for('static', filename='index.js')}}"></script>
+
+  </body>
+</html>

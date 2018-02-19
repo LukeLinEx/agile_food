@@ -1,0 +1,15 @@
+.DS_Store
+.env
+*.pyc
+*.pyo
+venv
+venv*
+dist
+build
+*.egg
+*.egg-info
+.tox
+.cache/
+.idea/
+.ropeproject/
+.directory
