@@ -15,6 +15,61 @@ myapp.controller('sortableController', function ($scope) {
   $scope.rawScreens = [docs,[]];
 
 
+  $scope.list1 = $scope.rawScreens[0];
+  $scope.list2 = $scope.rawScreens[1];
+
+
+  $scope.sortingLog = [];
+
+  $scope.sortableOptions = {
+    placeholder: "app",
+    connectWith: ".apps-container"
+  };
+
+  $scope.logModels = function () {
+    $scope.sortingLog = [];
+    for (var i = 0; i < $scope.rawScreens.length; i++) {
+      var logEntry = $scope.rawScreens[i].map(function (x) {
+        return x.title;
+      }).join(', ');
+      logEntry = 'container ' + (i+1) + ': ' + logEntry;
+      $scope.sortingLog.push(logEntry);
+    }
+  };
+
+
+
+  displayImg = function(tag){
+    var v1 = document.getElementById("view-1");
+    var v2 = document.getElementById("view-2");
+
+
+    if(v1.style.display=="none"){
+      v1.style.display='inline';
+      v2.style.display="none";
+      v1.firstChild.innerHTML = tag.innerHTML;
+    } else {
+      v2.style.display='inline';
+      v1.style.display="none";
+      v2.firstChild.innerHTML = tag.innerHTML;
+    }
+  }
+
+
+  expandTag = function(tag){
+    tag.getElementsByTagName("img")[0].style.display = 'block';
+  };
+
+   shrinkTag = function(tag){
+    tag.getElementsByTagName("img")[0].style.display = 'none';
+  }
+
+});
+
+
+
+
+
 //  $scope.rawScreens = [
 //    [{
 //      icon: './img/icons/facebook.jpg',
@@ -75,46 +130,3 @@ myapp.controller('sortableController', function ($scope) {
 //      link: 'https://www.pinterest.com'
 //    }]
 //  ];
-
-  $scope.list1 = $scope.rawScreens[0];
-  $scope.list2 = $scope.rawScreens[1];
-
-
-  $scope.sortingLog = [];
-
-  $scope.sortableOptions = {
-    placeholder: "app",
-    connectWith: ".apps-container"
-  };
-
-  $scope.logModels = function () {
-    $scope.sortingLog = [];
-    for (var i = 0; i < $scope.rawScreens.length; i++) {
-      var logEntry = $scope.rawScreens[i].map(function (x) {
-        return x.title;
-      }).join(', ');
-      logEntry = 'container ' + (i+1) + ': ' + logEntry;
-      $scope.sortingLog.push(logEntry);
-    }
-  };
-
-
-
-  displayImg = function(tag){
-    var v1 = document.getElementById("view-1");
-    var v2 = document.getElementById("view-2");
-
-
-    if(v1.style.display=="none"){
-      v1.style.display='inline';
-      v2.style.display="none";
-      v1.firstChild.innerHTML = tag.innerHTML;
-    } else {
-      v2.style.display='inline';
-      v1.style.display="none";
-      v2.firstChild.innerHTML = tag.innerHTML;
-    }
-  }
-
-
-});

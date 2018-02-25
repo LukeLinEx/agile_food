@@ -21,10 +21,10 @@
         <div id="agile-lower-half">
           <div ui-sortable="sortableOptions" class="apps-container screen" ng-model="list2">
           {%raw%}
-            <div class="app i1" id={{app.title}} ng-repeat="app in list2">
+            <div class="app i1" id={{app.title}} ng-repeat="app in list2" onmouseover="expandTag(this)" onmouseout="shrinkTag(this)">
               <font size=3>{{app.title}}</font>
-              <img class="dish-pic" src="{{app.link}}" height="120px" width="120px">
-              <button onclick="displayImg(this)" style="height:20px;width:50px">Details</button>
+              <img class="dish-pic" src="{{app.link}}" height="200px" width="200px" style="display:none">
+              <button onclick="displayImg(this)" style="height:20px;width:50px;display:none;">Details</button>
             </div>
           {%endraw%}
           </div>
@@ -36,11 +36,11 @@
       <div id="map">
         <div id="view-1">
           <div ui-sortable="sortableOptions" class="apps-container screen" ng-model="list1">
-            <div class="app i1" ng-repeat="app in list1">
+            <div class="app i1" ng-repeat="app in list1" onmouseover="expandTag(this)" onmouseout="shrinkTag(this)">
               {%raw%}
-              <font size=3>{{app.title}}</font><br>
-              <img class="dish-pic" src="{{app.link}}" height="120px" width="120px">
-              <button onclick="displayImg(this)" style="height:20px;width:40px;vertical-align:bottom;">Edit</button>
+              <font size=3>{{app.title}}</font><br><br>
+              <img class="dish-pic" src="{{app.link}}" height="200px" width="200px" style="display:none">
+              <button onclick="displayImg(this)" style="height:20px;width:40px;vertical-align:bottom;display:none">Edit</button>
               {%endraw%}
             </div>
           </div>
@@ -60,7 +60,7 @@
       <script src="https://rawgithub.com/angular-ui/ui-sortable/master/src/sortable.js"></script>
 
     </div>
-    <script type="text/javascript" src="{{url_for('static', filename='index.js')}}"></script>
+    <script type="text/javascript" src="{{url_for('static', filename='agile_food.js')}}"></script>
 
   </body>
 </html>

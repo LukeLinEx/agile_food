@@ -114,8 +114,13 @@ text-align: left;
 
 .i1 {
     width: 230px;
-    height:150px;
+    height:30px;
 }
+
+.i1:hover {
+   height: 280px;
+}
+
 
 .dish-pic {
     margin:5px;
