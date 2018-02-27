@@ -41,7 +41,7 @@ function loadYelp(ele) {
 }
 
 
-function godb(tag){
+function godb(tag, key){
     var form = tag.parentElement;
     var img_src = document.getElementById("pic").firstChild.src;
     var restaurant = form.getElementsByTagName("input")[0].value;
@@ -50,15 +50,34 @@ function godb(tag){
     console.log(restaurant);
     var address = form.getElementsByTagName("input")[1].value;
 
+    if(address){
+        lat_lng = "https://maps.googleapis.com/maps/api/geocode/json?address=" + address + "&key=" + key;
+        console.log(lat_lng);
+        var gmap = new XMLHttpRequest();
+        gmap.onreadystatechange = function() {
+            if (gmap.readyState === 4) {
+                    console.log( JSON.parse(gmap.response)["results"][0]["geometry"]["location"] );
+                }
+        }
+        gmap.open("GET", lat_lng, true);
+        gmap.send();
+
+
+
+
+    } else {
+        lat_lng=""
+    }
+
 
 
     var price = form.getElementsByTagName("input")[2].value;
     var tmp = "load?restaurant=" + restaurant + "&img_src=" + img_src + "&price=" + price +
               "&address=" + address;
 
-    var xhttp = new XMLHttpRequest();
-    xhttp.open("POST", tmp, true);
-    xhttp.send()
+//    var xhttp = new XMLHttpRequest();
+//    xhttp.open("POST", tmp, true);
+//    xhttp.send()
 }
 
 
