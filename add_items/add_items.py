@@ -7,7 +7,6 @@ add_bp = Blueprint('add_items', __name__)
 
 @add_bp.route('/', methods=['GET', 'POST'])
 def add_items():
-    print(2)
     return render_template('add_items.html')
 
 
@@ -21,7 +20,6 @@ def get_food_info():
             tmp[k] = tmp[k][0]
         tmp["restaurant"]=tmp["restaurant"].replace("%and%", "&")
         dishes.insert(tmp)
-        print(1)
         return redirect(url_for(".add_items"))
     else:
         if "restaurant" in request.args and "img_id" in request.args:

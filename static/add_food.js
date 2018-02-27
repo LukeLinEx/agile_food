@@ -26,11 +26,11 @@ function loadYelp(ele) {
 
             var address = JSON.parse(xhttp.response)["address"];
             var restaurant = JSON.parse(xhttp.response)["restaurant"];
-            var tag = document.getElementById("form");
-            var restaurant_input = tag.getElementsByTagName("input")[0];
+            var tag = document.getElementById("myform");
+            var restaurant_input = tag.elements["restaurant"];
             restaurant_input.value = restaurant;
 
-            var address_input = tag.getElementsByTagName("input")[1];
+            var address_input = tag.elements["address"];
             address_input.value = address;
             tag.style.display = "block";
             }
@@ -49,8 +49,12 @@ function godb(tag){
     restaurant = restaurant.replace("&", "%and%")
     console.log(restaurant);
     var address = form.getElementsByTagName("input")[1].value;
+
+
+
     var price = form.getElementsByTagName("input")[2].value;
-    var tmp = "load?restaurant=" + restaurant + "&img_src=" + img_src + "&price=" + price;
+    var tmp = "load?restaurant=" + restaurant + "&img_src=" + img_src + "&price=" + price +
+              "&address=" + address;
 
     var xhttp = new XMLHttpRequest();
     xhttp.open("POST", tmp, true);
