@@ -13,13 +13,19 @@ def get_address(_soup):
     return _soup.find_all("address")[1].text.strip()
 
 
+def get_restaurant_categories(_soup):
+    cates = _soup.find_all("span", {"class":"category-str-list"})[0]
+    return [tag.text for tag in cates.find_all("a")]
+
+
 def yelp_scraper(restaurant, img_id):
     img_src = "https://s3-media4.fl.yelpcdn.com/bphoto/{}/o.jpg".format(img_id)
     img_url = "{}/{}?{}".format(img_url_root, restaurant, img_id)
     url = img_url.split("?")[0].replace("biz_photos", "biz")
     soup = BeautifulSoup(requests.get(url).text)
     result = {
-        "restaurant": get_title(soup), "address": get_address(soup), "img_src": img_src
+        "restaurant": get_title(soup), "address": get_address(soup), "img_src": img_src,
+        "restaurant_categories": get_restaurant_categories(soup)
     }
     return result
 

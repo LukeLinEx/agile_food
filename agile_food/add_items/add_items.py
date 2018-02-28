@@ -28,6 +28,7 @@ def get_food_info():
         tmp = request.args.to_dict()
         tmp["restaurant"]=tmp["restaurant"].replace("%and%", "&")
         tmp["location"] = json.loads(tmp["location"])
+        tmp["restaurant_categories"] = tmp["restaurant_categories"].split(",")
 
         dishes.insert(tmp)
         return redirect(url_for(".add_items"))
