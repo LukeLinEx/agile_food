@@ -2,6 +2,7 @@ from flask import Blueprint, render_template, request, redirect, url_for, jsonif
 from tools.scrapers import yelp_scraper
 from tools.connect_db import dishes
 from os.path import expanduser
+import json
 
 
 def get_googlemap_key():
@@ -24,12 +25,10 @@ def add_items(key=key):
 @add_bp.route('/load', methods=['GET','POST'])
 def get_food_info():
     if request.method == "POST":
-        tmp = dict(request.args)
-
-        # By default xmlhttp send lists as values
-        for k in tmp:
-            tmp[k] = tmp[k][0]
+        tmp = request.args.to_dict()
         tmp["restaurant"]=tmp["restaurant"].replace("%and%", "&")
+        tmp["location"] = json.loads(tmp["location"])
+
         dishes.insert(tmp)
         return redirect(url_for(".add_items"))
     else:

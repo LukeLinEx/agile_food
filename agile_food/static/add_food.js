@@ -44,19 +44,20 @@ function loadYelp(ele) {
 function godb(tag, key){
     var form = tag.parentElement;
     var img_src = document.getElementById("pic").firstChild.src;
-    var restaurant = form.getElementsByTagName("input")[0].value;
-    console.log(restaurant);
+    var form = document.getElementById("myform");
+    var restaurant = form.elements["restaurant"].value;
     restaurant = restaurant.replace("&", "%and%")
-    console.log(restaurant);
-    var address = form.getElementsByTagName("input")[1].value;
+    var address = form.elements["address"].value;
+    var price = form.elements["price"].value;
+    var name = form.elements["name"].value;
 
     if(address){
         lat_lng = "https://maps.googleapis.com/maps/api/geocode/json?address=" + address + "&key=" + key;
-        console.log(lat_lng);
         var gmap = new XMLHttpRequest();
         gmap.onreadystatechange = function() {
             if (gmap.readyState === 4) {
-                    console.log( JSON.parse(gmap.response)["results"][0]["geometry"]["location"] );
+                    var location = JSON.stringify(JSON.parse(gmap.response)["results"][0]["geometry"]["location"]);
+                    js2db(location)
                 }
         }
         gmap.open("GET", lat_lng, true);
@@ -65,19 +66,18 @@ function godb(tag, key){
 
 
 
-    } else {
-        lat_lng=""
     }
 
+    function js2db(location){
+        var tmp = "load?restaurant=" + restaurant + "&img_src=" + img_src + "&price=" + price +
+                  "&name=" + name + "&address=" + address + "&location=" + location;
 
+        var xhttp = new XMLHttpRequest();
+        xhttp.open("POST", tmp, true);
+        xhttp.send();
 
-    var price = form.getElementsByTagName("input")[2].value;
-    var tmp = "load?restaurant=" + restaurant + "&img_src=" + img_src + "&price=" + price +
-              "&address=" + address;
+    }
 
-//    var xhttp = new XMLHttpRequest();
-//    xhttp.open("POST", tmp, true);
-//    xhttp.send()
 }
 
 
