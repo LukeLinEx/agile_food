@@ -4,7 +4,7 @@
     <link rel="stylesheet" type=text/css href="{{ url_for('static', filename='style.css') }}">
     <meta name="viewport" content="initial-scale=1.0, user-scalable=no">
     <meta charset="utf-8">
-    <title>搜索地圖</title>
+    <title>Agile Food</title>
   </head>
 
   <body>
@@ -14,21 +14,27 @@
         docs: {{docs|safe}}
       }
     </script>
-    <div ng-app="sortableApp" ng-controller="sortableController" class="container">
+    <div ng-app="sortableApp" ng-controller="sortableController" style="Height:500px;">
 
       <div class="options-box">
         <h2 id="h">Agile Food</h2>
-        <div id="agile-lower-half">
-          <div ui-sortable="sortableOptions" class="apps-container screen" ng-model="list2">
+        <div id="single_sprint" style="display: none">
+          <button onclick="toAllLists()" style="display:block; height:30px;width:80px;">All Lists</button><br><br>
+          <div ui-sortable="sortableOptions" class="apps-container screen" ng-model="list2" id="sprint_content">
           {%raw%}
             <div class="app i1" id={{app.title}} ng-repeat="app in list2" onmouseover="expandTag(this)" onmouseout="shrinkTag(this)">
               <font size=3>{{app.title}}</font>
               <img class="dish-pic" src="{{app.link}}" height="200px" width="200px" style="display:none">
-              <button onclick="displayImg(this)" style="height:20px;width:50px;display:none;">Details</button>
             </div>
           {%endraw%}
           </div>
+          <input type="button" onclick="godb(this)" value="Submit">
           <div style="clear: both;"></div>
+        </div>
+
+        <div id="all_sprints">
+          <li><a href="" onclick="toAllLists()">close to my office</a></li>
+          <li><a href="" onclick="toAllLists()">expensive french</a></li>
         </div>
       </div>
 

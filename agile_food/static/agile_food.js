@@ -12,6 +12,7 @@ myapp.controller('sortableController', function ($scope) {
     }
     docs[i].link = docs[i].img_src;
   }
+
   $scope.rawScreens = [docs,[]];
 
 
@@ -37,6 +38,25 @@ myapp.controller('sortableController', function ($scope) {
     }
   };
 
+
+  godb = function(tag){
+    var lst = tag.parentElement.querySelector("#sprint_content");
+    console.log(lst);
+  }
+
+  toAllLists = function(){
+    var v1 = document.getElementById("single_sprint");
+    var v2 = document.getElementById("all_sprints");
+
+
+    if(v1.style.display=="none"){
+      v1.style.display='inline';
+      v2.style.display="none";
+    } else {
+      v2.style.display='inline';
+      v1.style.display="none";
+    }
+  }
 
 
   displayImg = function(tag){
