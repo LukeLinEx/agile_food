@@ -26,12 +26,15 @@ function loadYelp(ele) {
 
             var address = JSON.parse(xhttp.response)["address"];
             var restaurant = JSON.parse(xhttp.response)["restaurant"];
+            var categories = JSON.parse(xhttp.response)["restaurant_categories"];
             var tag = document.getElementById("myform");
             var restaurant_input = tag.elements["restaurant"];
             restaurant_input.value = restaurant;
 
             var address_input = tag.elements["address"];
             address_input.value = address;
+            var categories_input = tag.elements["categories"];
+            categories_input.value = categories;
             tag.style.display = "block";
             }
         }
@@ -50,6 +53,7 @@ function godb(tag, key){
     var address = form.elements["address"].value;
     var price = form.elements["price"].value;
     var name = form.elements["name"].value;
+    var categories = form.elements["categories"].value;
 
     if(address){
         lat_lng = "https://maps.googleapis.com/maps/api/geocode/json?address=" + address + "&key=" + key;
@@ -70,7 +74,8 @@ function godb(tag, key){
 
     function js2db(location){
         var tmp = "load?restaurant=" + restaurant + "&img_src=" + img_src + "&price=" + price +
-                  "&name=" + name + "&address=" + address + "&location=" + location;
+                  "&name=" + name + "&address=" + address + "&location=" + location +
+                  "&restaurant_categories=" + categories;
 
         var xhttp = new XMLHttpRequest();
         xhttp.open("POST", tmp, true);

@@ -4,6 +4,9 @@
     <title>Agile Food!</title>
   </head>
   <body>
+
+    <a href="/agile">Go to Agile!</a>
+
     <input type="search" id="searchInput" class="search"
            onkeydown="loadYelp(this)" size="100px">
 
@@ -20,6 +23,7 @@
           Price:<br>
           <input type="text" name="price" size="50px"><br>
           <br>
+          <input type="text" name="categories" size="50px" style="display:none"><br>
           <input type="buttom" value="Submit" onclick="godb(this, '{{key}}')">
         </form>
       </div>
