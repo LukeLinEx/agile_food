@@ -75,12 +75,26 @@ function godb(tag, key){
         var xhttp = new XMLHttpRequest();
         xhttp.open("POST", tmp, true);
         xhttp.send();
-
+        reset_search();
     }
 
 }
 
 
+function reset_search(){
+    var pic = document.getElementById("pic");
+    while (pic.firstChild) {
+        pic.removeChild(pic.firstChild);
+    }
+    var search = document.getElementById("searchInput")
+    search.value = "";
+    var form = document.getElementById("myform");
+    form.elements["restaurant"].value = "";
+    form.elements["address"].value = "";
+    form.elements["price"].value = "";
+    form.elements["name"].value = "";
+    form.style.display="none";
+}
 
 
 
